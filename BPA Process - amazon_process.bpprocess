@@ -1,0 +1,61 @@
+﻿<process name="amazon_process" version="1.0" bpversion="6.9.0.26970" narrative="" byrefcollection="true" preferredid="86bb9f90-945f-470a-a0dd-27e0de31600e">
+  <view>
+    <camerax>0</camerax>
+    <cameray>-21</cameray>
+    <zoom version="2">1.25</zoom>
+  </view>
+  <preconditions />
+  <endpoint narrative="" />
+  <stage stageid="fee3f42a-9a87-4d27-9db9-5cd7173a0301" name="Start" type="Start">
+    <display x="15" y="-105" />
+    <onsuccess>80b70ee6-f996-49d7-965f-a7360d38172b</onsuccess>
+  </stage>
+  <stage stageid="bc1aecff-a0af-4018-8e75-89fa6f4cce60" name="End" type="End">
+    <display x="15" y="120" />
+  </stage>
+  <stage stageid="b0230499-3963-48a7-9b8d-d83ab88404c1" name="Stage1" type="ProcessInfo">
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="80b70ee6-f996-49d7-965f-a7360d38172b" name="AmazonDataScraping::Launch" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-45" />
+    <onsuccess>26ac969b-5327-4619-bd68-4713a5000cfa</onsuccess>
+    <resource object="AmazonDataScraping" action="Launch" />
+  </stage>
+  <stage stageid="26ac969b-5327-4619-bd68-4713a5000cfa" name="AmazonDataScraping::Search" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="0" />
+    <onsuccess>9c313ee2-28d0-41b6-a633-a678df762a8f</onsuccess>
+    <resource object="AmazonDataScraping" action="Search" />
+  </stage>
+  <stage stageid="9c313ee2-28d0-41b6-a633-a678df762a8f" name="AmazonDataScraping::Scrap Data" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="45" />
+    <onsuccess>bc1aecff-a0af-4018-8e75-89fa6f4cce60</onsuccess>
+    <resource object="AmazonDataScraping" action="Scrap Data" />
+  </stage>
+  <stage stageid="fda744b6-500b-4aa0-b128-398a7ab210ba" name="Recover1" type="Recover">
+    <loginhibit />
+    <display x="-135" y="15" />
+    <onsuccess>451cc0d2-e3aa-47d3-973d-c293b0d0f624</onsuccess>
+  </stage>
+  <stage stageid="9fb85aaa-9132-4980-9969-05a4b97b4185" name="Resume1" type="Resume">
+    <loginhibit />
+    <display x="-135" y="120" />
+    <onsuccess>bc1aecff-a0af-4018-8e75-89fa6f4cce60</onsuccess>
+  </stage>
+  <stage stageid="451cc0d2-e3aa-47d3-973d-c293b0d0f624" name="get Exception" type="Calculation">
+    <loginhibit onsuccess="true" />
+    <display x="-135" y="60" />
+    <onsuccess>9fb85aaa-9132-4980-9969-05a4b97b4185</onsuccess>
+    <calculation expression="ExceptionDetail()" stage="exception" />
+  </stage>
+  <stage stageid="98bb7edf-621a-4096-8bf3-b9cf11cb1c4e" name="exception" type="Data">
+    <loginhibit onsuccess="true" />
+    <display x="-270" y="60" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+</process>
